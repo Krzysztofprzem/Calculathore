@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Calculathore.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+
+        <!--
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />-->
+        
+        
+        <Label Text="Notes"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               FontAttributes="Bold" />
+        
+        <!--
+        <Editor x:Name="editor"
+                Placeholder="Enter your note"
+                HeightRequest="100" />-->
+
+        <Grid ColumnSpacing="2"
+              RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <!-- First Row -->
+            <Button Grid.Column="0" Grid.Row="0" Text="7" x:Name="7"/>
+            <Button Grid.Column="1" Grid.Row="0" Text="8"/>
+            <Button Grid.Column="2" Grid.Row="0" Text="9"/>
+            <Button Grid.Column="3" Grid.Row="0" Text="+"/>
+
+            <!-- Second Row -->
+            <Button Grid.Column="0" Grid.Row="1" Text="4"/>
+            <Button Grid.Column="1" Grid.Row="1" Text="5"/>
+            <Button Grid.Column="2" Grid.Row="1" Text="6"/>
+            <Button Grid.Column="3" Grid.Row="1" Text="-"/>
+            <Button Grid.Column="4" Grid.Row="1" Text="-"/>
+
+            <!-- Third Row -->
+            <Button Grid.Column="0" Grid.Row="2" Text="1"/>
+            <Button Grid.Column="1" Grid.Row="2" Text="2"/>
+            <Button Grid.Column="2" Grid.Row="2" Text="3"/>
+            <Button Grid.Column="3" Grid.Row="2" Text="*"/>
+
+            <!-- Fourth Row -->
+            <Button Grid.Column="0" Grid.Row="3" Text="+/-"/>
+            <Button Grid.Column="1" Grid.Row="3" Text="0"/>
+            <Button Grid.Column="2" Grid.Row="3" Text=","/>
+            <Button Grid.Column="3" Grid.Row="3" Text="/"/>
+
+        </Grid>
+
+    </StackLayout>
+</ContentPage>
