@@ -13,55 +13,121 @@ namespace Calculathore
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private double operand1;
-        private double operand2;
-        private int operation;
-        private double result;
+        private string[] operands = new string[2];
+        private string operation;
+        private string result;
 
 
         public MainPage()
         {
-            operand1  = 0;
-            operand2  = 0;
-            operation = 0;
-            result    = 0;
+            operands[0] = null;
+            operands[1] = null;
+            operation   = null;
+            result      = null;
             InitializeComponent();
         }
 
 
-        void Addition(object sender, EventArgs args)
+        void ButtonClicked(object sender, EventArgs e)
         {
-            operation = 0;
-        }
-
-        void Substraction(object sender, EventArgs args)
-        {
-            operation = 1;
-        }
-
-        void Multiplication(object sender, EventArgs args)
-        {
-            operation = 2;
-        }
-
-        void Division(object sender, EventArgs args)
-        {
-            operation = 3;
-        }
-
-        void Result(object sender, EventArgs args)
-        {
-            switch(operation)
+            Button b = (Button)sender;
+            if ("0123456789.".Contains(b.Text))
             {
-                case 0:
+                SetOperand(b);
+            }
+            else if("÷*-+".Contains(b.Text))
+            {
+                SetOperation(b);
+            }
+            else if(b.Text == "=")
+            {
+                Evaluate();
+            }
+
+        }
+
+
+        void SetOperand(Button b)
+        {
+            int index;
+            if (operation == null)
+            {
+                index = 0;
+            }
+            else
+            {
+                index = 1;
+            }
+
+            if ((b.Text == ".") && (!operands[index].Contains(b.Text)))
+            {
+                operands[index] += b.Text;
+            }
+            if ((b.Text == "0") && (!b.Text.All(s => (s.ToString() == "0"))))
+            {
+                operands[index] += b.Text;
+            }
+            else if ("123456789".Contains(b.Text))
+            {
+                operands[index] += b.Text;
+            }
+            ScreenUpdate();
+        }
+
+        void SetOperation(Button b)
+        {
+            operation = b.Text;
+            ScreenUpdate();
+        }
+
+        void ClearButtonClicked(object sender, EventArgs e)
+        {
+            ScreenUpdate();
+        }
+
+        void BackspaceButtonClicked(object sender, EventArgs e)
+        {
+            ScreenUpdate();
+        }
+
+        private void Evaluate()
+        {
+            double result = 0;
+            switch (operation)
+            {
+                case "÷":
+                    if (double.Parse(operands[1]) == 0)
+                    {
+                        operands[0] = (double.Parse(operands[0])) >= 0 ? "inf" : "-inf";
+                        operands[1] = null;
+                        operation = null;
+                        ScreenUpdate();
+                        return;
+                    }
+                    else
+                    {
+                        result = double.Parse(operands[0]) / double.Parse(operands[1]);
+                    }
                     break;
-                case 1:
+                case "*":
+                    result = double.Parse(operands[0]) * double.Parse(operands[1]);
                     break;
-                case 2:
+                case "-":
+                    result = double.Parse(operands[0]) - double.Parse(operands[1]);
                     break;
-                case 3:
+                case "+":
+                    result = double.Parse(operands[0]) + double.Parse(operands[1]);
                     break;
             }
+            operands[0] = result.ToString();
+            operands[1] = null;
+            operation = null;
+            ScreenUpdate();
+        }
+
+        void ScreenUpdate()
+        {
+            Screen.Text = $"{operands[0]} {operation} {operands[1]}";
         }
 
     }
