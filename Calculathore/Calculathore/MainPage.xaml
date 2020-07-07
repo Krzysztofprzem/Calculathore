@@ -5,6 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Calculathore.MainPage">
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Grid" x:Key="calculatorRow">
+                <Setter Property="ColumnDefinition.Width" Value="*"/>
+                <Setter Property="ColumnSpan" Value="4"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
 
     <StackLayout>
@@ -21,46 +31,80 @@
                VerticalOptions="CenterAndExpand"
                FontAttributes="Bold" />
         
-        <!--
-        <Editor x:Name="editor"
-                Placeholder="Enter your note"
-                HeightRequest="100" />-->
 
         <Grid ColumnSpacing="2"
               RowSpacing="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
 
 
             <!-- First Row -->
-            <Button Grid.Column="0" Grid.Row="0" Text="7" x:Name="7"/>
-            <Button Grid.Column="1" Grid.Row="0" Text="8"/>
-            <Button Grid.Column="2" Grid.Row="0" Text="9"/>
-            <Button Grid.Column="3" Grid.Row="0" Text="+"/>
+            <Grid Grid.Row="0"
+                  Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="7"/>
+                <Button Grid.Column="1" Text="8"/>
+                <Button Grid.Column="2" Text="9"/>
+                <Button Grid.Column="3" Text="/"/>
+            </Grid>
 
+            
             <!-- Second Row -->
-            <Button Grid.Column="0" Grid.Row="1" Text="4"/>
-            <Button Grid.Column="1" Grid.Row="1" Text="5"/>
-            <Button Grid.Column="2" Grid.Row="1" Text="6"/>
-            <Button Grid.Column="3" Grid.Row="1" Text="-"/>
-            <Button Grid.Column="4" Grid.Row="1" Text="-"/>
+            <Grid Grid.Row="1"
+                  Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="4"/>
+                <Button Grid.Column="1" Text="5"/>
+                <Button Grid.Column="2" Text="6"/>
+                <Button Grid.Column="3" Text="*"/>
+                <!-- <Button Grid.Column="4" Text="-"/> -->
+            </Grid>
 
+            
             <!-- Third Row -->
-            <Button Grid.Column="0" Grid.Row="2" Text="1"/>
-            <Button Grid.Column="1" Grid.Row="2" Text="2"/>
-            <Button Grid.Column="2" Grid.Row="2" Text="3"/>
-            <Button Grid.Column="3" Grid.Row="2" Text="*"/>
+            <Grid Grid.Row="2"
+                 Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="1"/>
+                <Button Grid.Column="1" Text="2"/>
+                <Button Grid.Column="2" Text="3"/>
+                <Button Grid.Column="3" Text="-"/>
+            </Grid>
 
+            
             <!-- Fourth Row -->
-            <Button Grid.Column="0" Grid.Row="3" Text="+/-"/>
-            <Button Grid.Column="1" Grid.Row="3" Text="0"/>
-            <Button Grid.Column="2" Grid.Row="3" Text=","/>
-            <Button Grid.Column="3" Grid.Row="3" Text="/"/>
+            <Grid Grid.Row="3"
+                  Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="0"/>
+                <Button Grid.Column="1" Text="."/>
+                <Button Grid.Column="2" Text="=" BackgroundColor="Salmon"/>
+                <Button Grid.Column="3" Text="+"/>
+            </Grid>
+
+            
+            <Grid Grid.Row="4"
+                  Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="7"/>
+                <Button Grid.Column="1" Text="8"/>
+                <Button Grid.Column="2" Text="9"/>
+                <Button Grid.Column="3" Text="/"/>
+            </Grid>
+
+
+            <Grid Grid.Row="5"
+                  Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="rad/deg"/>
+                <Button Grid.Column="1" Text="tryg"/>
+                <Button Grid.Column="2" Text="math"/>
+                <Button Grid.Column="3" Text="consts"/>
+            </Grid>
+
+            
+            <Grid Grid.Row="6"
+                  Style="{StaticResource calculatorRow}">
+                <Button Grid.Column="0" Text="sin"/>
+                <Button Grid.Column="1" Text="cos"/>
+                <Button Grid.Column="2" Text="tan"/>
+                <Button Grid.Column="3" Text="cot"/>
+            </Grid>
 
         </Grid>
 
