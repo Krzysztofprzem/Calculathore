@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="Calculathore.MainPage">
 
+
     <StackLayout>
         <!-- Place new controls here -->
 
@@ -33,6 +34,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
 
 
             <!-- First Row -->
