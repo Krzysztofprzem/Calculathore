@@ -27,6 +27,23 @@ namespace Calculathore
             InitializeComponent();
         }
 
+        private bool StringContainOnly(string str, string letter)
+        {
+            if(str == null)
+            {
+                return true;
+            }
+
+            foreach(char c in str)
+            {
+                if (c.ToString() != letter)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         void ButtonClicked(object sender, EventArgs e)
         {
@@ -63,7 +80,7 @@ namespace Calculathore
             {
                 operands[index] += b.Text;
             }
-            if ((b.Text == "0") && (!b.Text.All(s => (s.ToString() == "0"))))
+            if ((b.Text == "0") && ((operands[index] == null) || (operands[index].Any(s => s.ToString() != "0".ToString()))))
             {
                 operands[index] += b.Text;
             }
