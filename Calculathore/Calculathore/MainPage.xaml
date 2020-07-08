@@ -17,7 +17,7 @@
     </ContentPage.Resources>
 
 
-    <StackLayout>
+    <StackLayout BackgroundColor="Black">
         <!-- Place new controls here -->
 
         <!--
@@ -27,6 +27,7 @@
         
         
         <Label Text="Notes"
+               BackgroundColor="White" 
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"
                FontAttributes="Bold" 

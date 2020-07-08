@@ -27,24 +27,6 @@ namespace Calculathore
             InitializeComponent();
         }
 
-        private bool StringContainOnly(string str, string letter)
-        {
-            if(str == null)
-            {
-                return true;
-            }
-
-            foreach(char c in str)
-            {
-                if (c.ToString() != letter)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         void ButtonClicked(object sender, EventArgs e)
         {
             Button b = (Button)sender;
@@ -86,7 +68,14 @@ namespace Calculathore
             }
             else if ("123456789".Contains(b.Text))
             {
-                operands[index] += b.Text;
+                if (operands[index] == "0")
+                {
+                    operands[index] = b.Text;
+                }
+                else
+                {
+                    operands[index] += b.Text;
+                }
             }
             ScreenUpdate();
         }
@@ -99,6 +88,10 @@ namespace Calculathore
 
         void ClearButtonClicked(object sender, EventArgs e)
         {
+            operands[0] = null;
+            operands[1] = null;
+            operation = null;
+
             ScreenUpdate();
         }
 
@@ -109,6 +102,13 @@ namespace Calculathore
 
         private void Evaluate()
         {
+            if (operands[1] == null)
+            {
+                operation = null;
+                ScreenUpdate();
+                return;
+            }
+
             double result = 0;
             switch (operation)
             {
