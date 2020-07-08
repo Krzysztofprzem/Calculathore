@@ -88,7 +88,7 @@ namespace Calculathore
 
         void ClearButtonClicked(object sender, EventArgs e)
         {
-            operands[0] = null;
+            operands[0] = "0";
             operands[1] = null;
             operation = null;
 
@@ -144,7 +144,18 @@ namespace Calculathore
 
         void ScreenUpdate()
         {
-            Screen.Text = $"{operands[0]} {operation} {operands[1]}";
+            if (operation == null)
+            {
+                Screen.Text = $"{operands[0]}";
+            }
+            else if (operands[1] == null)
+            {
+                Screen.Text = $"{operands[0]} {operation}";
+            }
+            else
+            {
+                Screen.Text = $"{operands[0]} {operation} {operands[1]}";
+            }
         }
 
     }
