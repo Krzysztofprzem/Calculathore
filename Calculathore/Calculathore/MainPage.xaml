@@ -14,9 +14,15 @@
                 <Setter Property="ColumnSpan" Value="4"/>
                 <Setter Property="ColumnSpacing" Value="4"/>
             </Style>
-            
+
+            <Style TargetType="StackLayout" x:Key="calculatorRowStack">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+
             <Style TargetType="Button" x:Key="calculatorButton">
                 <Setter Property="BackgroundColor" Value="SteelBlue"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontFamily" Value="Roboto"/>
@@ -38,18 +44,9 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />-->
 
-
-        <Grid RowSpacing="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
             <Label x:Name="Screen" 
                    FontSize="50" 
                    FontFamily="Roboto"
@@ -58,90 +55,53 @@
                    Text="0"
                    TextColor="Black" 
                    HorizontalTextAlignment="End" 
-                   VerticalTextAlignment="Center"
-                   Grid.RowSpan="2"
-                   Grid.ColumnSpan="4"/>
-
+                   VerticalTextAlignment="Center"/>
 
             <!-- First Row -->
-            <Grid Grid.Row="2"
-                  VerticalOptions="CenterAndExpand"
-                  Style="{StaticResource calculatorRow}">
-                <Button Style="{StaticResource calculatorButton}" Grid.Column="0" Text="blank"/>
-                <Button Style="{StaticResource calculatorButton}" Grid.Column="1" Text="blank"/>
-                <Button Style="{StaticResource calculatorButton}" Grid.Column="2" Text="CE" Clicked="ClearButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}" Grid.Column="3" Text="Back" Clicked="BackspaceButtonClicked"/>
-            </Grid>
+            <StackLayout Style="{StaticResource calculatorRowStack}">
+                <Button Style="{StaticResource calculatorButton}" Text="blank"/>
+                <Button Style="{StaticResource calculatorButton}" Text="blank"/>
+                <Button Style="{StaticResource calculatorButton}" Text="CE" Clicked="ClearButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}" Text="Back" Clicked="BackspaceButtonClicked"/>
+            </StackLayout>
 
             <!-- First Row -->
-            <Grid Grid.Row="3"
-                  Style="{StaticResource calculatorRow}">
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="0" Text="7" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="1" Text="8" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="2" Text="9" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Grid.Column="3" Text="÷" Clicked="ButtonClicked"/>
-            </Grid>
+            <StackLayout Style="{StaticResource calculatorRowStack}">
+                <Button Style="{StaticResource calculatorDigitButton}" Text="7" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="8" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="9" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="÷" Clicked="ButtonClicked"/>
+            </StackLayout>
 
-            
+
             <!-- Second Row -->
-            <Grid Grid.Row="4"
-                  Style="{StaticResource calculatorRow}">
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="0" Text="4" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="1" Text="5" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="2" Text="6" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Grid.Column="3" Text="*" Clicked="ButtonClicked"/>
+            <StackLayout Style="{StaticResource calculatorRowStack}">
+                <Button Style="{StaticResource calculatorDigitButton}" Text="4" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="5" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="6" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="*" Clicked="ButtonClicked"/>
                 <!-- <Button Grid.Column="4" Text="-"/> -->
-            </Grid>
+            </StackLayout>
 
-            
+
             <!-- Third Row -->
-            <Grid Grid.Row="5"
-                 Style="{StaticResource calculatorRow}">
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="0" Text="1" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="1" Text="2" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="2" Text="3" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Grid.Column="3" Text="-" Clicked="ButtonClicked"/>
-            </Grid>
+            <StackLayout Style="{StaticResource calculatorRowStack}">
+                <Button Style="{StaticResource calculatorDigitButton}" Text="1" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="2" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="3" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="-" Clicked="ButtonClicked"/>
+            </StackLayout>
 
-            
+
             <!-- Fourth Row -->
-            <Grid Grid.Row="6"
-                  VerticalOptions="CenterAndExpand"
-                  Style="{StaticResource calculatorRow}">
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="0" Text="0" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorDigitButton}" Grid.Column="1" Text="." Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Grid.Column="2" Text="=" Clicked="ButtonClicked" BackgroundColor="Salmon"/>
-                <Button Style="{StaticResource calculatorButton}"      Grid.Column="3" Text="+" Clicked="ButtonClicked"/>
-            </Grid>
+            <StackLayout Style="{StaticResource calculatorRowStack}">
+                <Button Style="{StaticResource calculatorDigitButton}" Text="." Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorDigitButton}" Text="0" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="=" Clicked="ButtonClicked" BackgroundColor="Salmon"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="+" Clicked="ButtonClicked"/>
+            </StackLayout>
 
-
-            <!--
-            <Grid Grid.Row="4"
-                  Style="{StaticResource calculatorRow}">
-                <Button Grid.Column="0" Text="7"/>
-                <Button Grid.Column="1" Text="8"/>
-                <Button Grid.Column="2" Text="9"/>
-                <Button Grid.Column="3" Text="/"/>
-            </Grid>
-
-            <Grid Grid.Row="5"
-                  Style="{StaticResource calculatorRow}">
-                <Button Grid.Column="0" Text="rad/deg"/>
-                <Button Grid.Column="1" Text="tryg"/>
-                <Button Grid.Column="2" Text="math"/>
-                <Button Grid.Column="3" Text="consts"/>
-            </Grid>
-
-            
-            <Grid Grid.Row="6"
-                  Style="{StaticResource calculatorRow}">
-                <Button Grid.Column="0" Text="sin"/>
-                <Button Grid.Column="1" Text="cos"/>
-                <Button Grid.Column="2" Text="tan"/>
-                <Button Grid.Column="3" Text="cot"/>
-            </Grid>
--->
-        </Grid>
+        </StackLayout>
 
     </StackLayout>
 </ContentPage>
