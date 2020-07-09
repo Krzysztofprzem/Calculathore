@@ -102,12 +102,41 @@ namespace Calculathore
 
         private void Evaluate()
         {
-            if (operands[1] == null)
+            if ((operands[1] == null) || (operands[0] == "err"))
             {
+                operands[1] = null;
                 operation = null;
                 ScreenUpdate();
                 return;
             }
+
+            // if first operand is infinifty,
+            /*
+            if (operands[0].Contains("inf"))
+            {
+                // then there is specific situation.
+                // For * and ÷ operations, if second operand is smaller than 0, then result is
+                // an additive inverse for first operand
+                if (!"*÷".Contains(operation))
+                {
+                    if(double.Parse(operands[1])<0)
+                    {
+                        operands[0] = (operands[0] == "inf") ? "-inf" : "inf";
+                    }
+                    operands[1] = null;
+                    operation = null;
+                    ScreenUpdate();
+                    return;
+                }
+                else
+                {
+                    operands[1] = null;
+                    operation = null;
+                    ScreenUpdate();
+                    return;
+                }
+            }
+            */
 
             double result = 0;
             switch (operation)
@@ -115,7 +144,8 @@ namespace Calculathore
                 case "÷":
                     if (double.Parse(operands[1]) == 0)
                     {
-                        operands[0] = (double.Parse(operands[0])) >= 0 ? "inf" : "-inf";
+                        //operands[0] = (double.Parse(operands[0])) >= 0 ? "inf" : "-inf";
+                        operands[0] = "err";
                         operands[1] = null;
                         operation = null;
                         ScreenUpdate();
