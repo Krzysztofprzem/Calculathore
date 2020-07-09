@@ -48,10 +48,11 @@
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand">
             <Label x:Name="Screen" 
-                   FontSize="50" 
+                   VerticalOptions="FillAndExpand"
+                   BackgroundColor="White" 
+                   FontSize="40" 
                    FontFamily="Roboto"
                    FontAttributes="Bold" 
-                   BackgroundColor="White" 
                    Text="0"
                    TextColor="Black" 
                    HorizontalTextAlignment="End" 
