@@ -15,15 +15,12 @@ namespace Calculathore
     {
         private string[] operands = new string[2];
         private string operation;
-        private string result;
-
 
         public MainPage()
         {
-            operands[0] = null;
-            operands[1] = null;
+            operands[0] = "0";
+            operands[1] = "0";
             operation   = null;
-            result      = null;
             InitializeComponent();
         }
 
@@ -36,7 +33,14 @@ namespace Calculathore
             }
             else if("÷*-+".Contains(b.Text))
             {
-                SetOperation(b);
+                if (operands[1] != "0")
+                {
+                    Evaluate();
+                }
+                else
+                {
+                    SetOperation(b);
+                }
             }
             else if(b.Text == "=")
             {
@@ -62,7 +66,7 @@ namespace Calculathore
             {
                 operands[index] += b.Text;
             }
-            if ((b.Text == "0") && ((operands[index] == null) || (operands[index].Any(s => s.ToString() != "0".ToString()))))
+            if ((b.Text == "0") && (operands[index].Any(s => s.ToString() != "0".ToString())))
             {
                 operands[index] += b.Text;
             }
@@ -89,7 +93,7 @@ namespace Calculathore
         void ClearButtonClicked(object sender, EventArgs e)
         {
             operands[0] = "0";
-            operands[1] = null;
+            operands[1] = "0";
             operation = null;
 
             ScreenUpdate();
@@ -102,9 +106,9 @@ namespace Calculathore
 
         private void Evaluate()
         {
-            if ((operands[1] == null) || (operands[0] == "err"))
+            if ((operands[1] == "0") || (operands[0] == "err"))
             {
-                operands[1] = null;
+                operands[1] = "0";
                 operation = null;
                 ScreenUpdate();
                 return;
@@ -142,7 +146,7 @@ namespace Calculathore
             switch (operation)
             {
                 case "÷":
-                    if (double.Parse(operands[1]) == 0)
+                    if (operands[1] == "0")
                     {
                         //operands[0] = (double.Parse(operands[0])) >= 0 ? "inf" : "-inf";
                         operands[0] = "err";
@@ -167,13 +171,21 @@ namespace Calculathore
                     break;
             }
             operands[0] = result.ToString();
-            operands[1] = null;
+            operands[1] = "0";
             operation = null;
             ScreenUpdate();
         }
 
         void ScreenUpdate()
         {
+            int index = 0;
+            if (operation != null)
+            {
+                index = 1;
+            }
+            Screen.Text = $"{operands[index]}";
+
+            /*
             if (operation == null)
             {
                 Screen.Text = $"{operands[0]}";
@@ -186,6 +198,7 @@ namespace Calculathore
             {
                 Screen.Text = $"{operands[0]} {operation} {operands[1]}";
             }
+            */
         }
 
     }
