@@ -15,13 +15,26 @@ namespace Calculathore
     {
         private string[] operands = new string[2];
         private string operation;
-
+        private string operand_modifier;
+        private int maxLength;
         public MainPage()
         {
             operands[0] = "0";
             operands[1] = "0";
+            operand_modifier = null;
             operation   = null;
+            maxLength   = 10;
             InitializeComponent();
+        }
+
+        private int GetActiveArgument()
+        {
+            int index = 0;
+            if (operation != null)
+            {
+                index = 1;
+            }
+            return index;
         }
 
         void ButtonClicked(object sender, EventArgs e)
@@ -30,6 +43,11 @@ namespace Calculathore
             if ("0123456789.".Contains(b.Text))
             {
                 SetOperand(b);
+            }
+            else if("√%".Contains(b.Text))
+            {
+                operand_modifier = b.Text;
+                Evaluate();
             }
             else if("÷*-+".Contains(b.Text))
             {
@@ -52,17 +70,9 @@ namespace Calculathore
 
         void SetOperand(Button b)
         {
-            int index;
-            if (operation == null)
-            {
-                index = 0;
-            }
-            else
-            {
-                index = 1;
-            }
+            int index = GetActiveArgument();
 
-            if ((b.Text == ".") && (!operands[index].Contains(b.Text)))
+            if ((b.Text == ".") && (!operands[index].Contains(b.Text)) && (operands[index].Length < maxLength))
             {
                 operands[index] += b.Text;
             }
@@ -76,7 +86,7 @@ namespace Calculathore
                 {
                     operands[index] = b.Text;
                 }
-                else
+                else if (operands[index].Length < maxLength)
                 {
                     operands[index] += b.Text;
                 }
@@ -84,11 +94,13 @@ namespace Calculathore
             ScreenUpdate();
         }
 
+
         void SetOperation(Button b)
         {
             operation = b.Text;
             ScreenUpdate();
         }
+
 
         void ClearButtonClicked(object sender, EventArgs e)
         {
@@ -99,48 +111,57 @@ namespace Calculathore
             ScreenUpdate();
         }
 
-        void BackspaceButtonClicked(object sender, EventArgs e)
+
+        void SignButtonClicked(object sender, EventArgs e)
         {
+            int index = GetActiveArgument();
+            if (operands[index][0] != '-')
+            {
+                operands[index] = "-" + operands[index];
+            }
+            else
+            {
+                operands[index] = operands[index].Substring(1);
+            }
             ScreenUpdate();
         }
 
-        private void Evaluate()
+
+        private async void Evaluate()
         {
-            if ((operands[1] == "0") || (operands[0] == "err"))
+            int index = GetActiveArgument();
+
+            if (operands[0] == "err")
             {
                 operands[1] = "0";
                 operation = null;
                 ScreenUpdate();
                 return;
             }
-
-            // if first operand is infinifty,
-            /*
-            if (operands[0].Contains("inf"))
+            else if (operand_modifier != null)
             {
-                // then there is specific situation.
-                // For * and ÷ operations, if second operand is smaller than 0, then result is
-                // an additive inverse for first operand
-                if (!"*÷".Contains(operation))
+                switch (operand_modifier)
                 {
-                    if(double.Parse(operands[1])<0)
-                    {
-                        operands[0] = (operands[0] == "inf") ? "-inf" : "inf";
-                    }
-                    operands[1] = null;
-                    operation = null;
-                    ScreenUpdate();
-                    return;
-                }
-                else
-                {
-                    operands[1] = null;
-                    operation = null;
-                    ScreenUpdate();
-                    return;
+                    case "√":
+                        operands[index] = Math.Sqrt(double.Parse(operands[index])).ToString();
+                        ScreenUpdate();
+                        return;
+                        break;
+                    case "%":
+                        if (index == 1)
+                        {
+                            operands[1] = (double.Parse(operands[1]) * double.Parse(operands[0]) / 100).ToString();
+                        }
+                        else
+                        {
+                            operands[0] = "0";
+                            ScreenUpdate();
+                            return;
+                        }
+                        break;
                 }
             }
-            */
+
 
             double result = 0;
             switch (operation)
@@ -148,7 +169,6 @@ namespace Calculathore
                 case "÷":
                     if (operands[1] == "0")
                     {
-                        //operands[0] = (double.Parse(operands[0])) >= 0 ? "inf" : "-inf";
                         operands[0] = "err";
                         operands[1] = null;
                         operation = null;
@@ -176,29 +196,11 @@ namespace Calculathore
             ScreenUpdate();
         }
 
+
         void ScreenUpdate()
         {
-            int index = 0;
-            if (operation != null)
-            {
-                index = 1;
-            }
+            int index = GetActiveArgument();
             Screen.Text = $"{operands[index]}";
-
-            /*
-            if (operation == null)
-            {
-                Screen.Text = $"{operands[0]}";
-            }
-            else if (operands[1] == null)
-            {
-                Screen.Text = $"{operands[0]} {operation}";
-            }
-            else
-            {
-                Screen.Text = $"{operands[0]} {operation} {operands[1]}";
-            }
-            */
         }
 
     }

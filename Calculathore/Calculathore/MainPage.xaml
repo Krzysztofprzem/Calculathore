@@ -60,10 +60,10 @@
 
             <!-- First Row -->
             <StackLayout Style="{StaticResource calculatorRowStack}">
-                <Button Style="{StaticResource calculatorButton}" Text="blank"/>
-                <Button Style="{StaticResource calculatorButton}" Text="blank"/>
+                <Button Style="{StaticResource calculatorButton}" Text="%" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}" Text="√" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorButton}" Text="CE" Clicked="ClearButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}" Text="Back" Clicked="BackspaceButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}" Text="+/-" Clicked="SignButtonClicked"/>
             </StackLayout>
 
             <!-- First Row -->
