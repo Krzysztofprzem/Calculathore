@@ -107,7 +107,7 @@ namespace Calculathore
             operands[0] = "0";
             operands[1] = "0";
             operation = null;
-
+            operand_modifier = null;
             ScreenUpdate();
         }
 
@@ -127,7 +127,7 @@ namespace Calculathore
         }
 
 
-        private async void Evaluate()
+        private void Evaluate()
         {
             int index = GetActiveArgument();
 
