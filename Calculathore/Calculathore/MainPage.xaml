@@ -60,9 +60,9 @@
 
             <!-- First Row -->
             <StackLayout Style="{StaticResource calculatorRowStack}">
-                <Button Style="{StaticResource calculatorButton}" Text="%" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}" Text="√" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}" Text="CE" Clicked="ClearButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}" Text="%"   Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}" Text="√"   Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}" Text="CE"  Clicked="ClearButtonClicked"/>
                 <Button Style="{StaticResource calculatorButton}" Text="+/-" Clicked="SignButtonClicked"/>
             </StackLayout>
 
@@ -71,7 +71,7 @@
                 <Button Style="{StaticResource calculatorDigitButton}" Text="7" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="8" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="9" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Text="÷" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="÷" Clicked="ButtonClicked" x:Name="division_button"/>
             </StackLayout>
 
 
@@ -80,9 +80,9 @@
                 <Button Style="{StaticResource calculatorDigitButton}" Text="4" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="5" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="6" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Text="*" Clicked="ButtonClicked"/>
-                <!-- <Button Grid.Column="4" Text="-"/> -->
+                <Button Style="{StaticResource calculatorButton}"      Text="*" Clicked="ButtonClicked" x:Name="multiplication_button"/>
             </StackLayout>
+
 
 
             <!-- Third Row -->
@@ -90,7 +90,7 @@
                 <Button Style="{StaticResource calculatorDigitButton}" Text="1" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="2" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="3" Clicked="ButtonClicked"/>
-                <Button Style="{StaticResource calculatorButton}"      Text="-" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="-" Clicked="ButtonClicked" x:Name="substraction_button"/>
             </StackLayout>
 
 
@@ -99,7 +99,7 @@
                 <Button Style="{StaticResource calculatorDigitButton}" Text="." Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorDigitButton}" Text="0" Clicked="ButtonClicked"/>
                 <Button Style="{StaticResource calculatorButton}"      Text="=" Clicked="ButtonClicked" BackgroundColor="Salmon"/>
-                <Button Style="{StaticResource calculatorButton}"      Text="+" Clicked="ButtonClicked"/>
+                <Button Style="{StaticResource calculatorButton}"      Text="+" Clicked="ButtonClicked" x:Name="addition_button"/>
             </StackLayout>
 
         </StackLayout>

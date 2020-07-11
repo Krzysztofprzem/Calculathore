@@ -95,9 +95,19 @@ namespace Calculathore
         }
 
 
+        private void OperationButtonsColorReset()
+        {
+            division_button.BackgroundColor       = Color.SteelBlue;
+            addition_button.BackgroundColor       = Color.SteelBlue;
+            substraction_button.BackgroundColor   = Color.SteelBlue;
+            multiplication_button.BackgroundColor = Color.SteelBlue;
+        }
+
         void SetOperation(Button b)
         {
             operation = b.Text;
+            OperationButtonsColorReset();
+            b.BackgroundColor = Color.DarkBlue;
             ScreenUpdate();
         }
 
@@ -107,6 +117,7 @@ namespace Calculathore
             operands[0] = "0";
             operands[1] = "0";
             operation = null;
+            OperationButtonsColorReset();
             operand_modifier = null;
             ScreenUpdate();
         }
@@ -135,6 +146,7 @@ namespace Calculathore
             {
                 operands[1] = "0";
                 operation = null;
+                OperationButtonsColorReset();
                 ScreenUpdate();
                 return;
             }
@@ -172,6 +184,7 @@ namespace Calculathore
                         operands[0] = "err";
                         operands[1] = null;
                         operation = null;
+                        OperationButtonsColorReset();
                         ScreenUpdate();
                         return;
                     }
@@ -193,6 +206,7 @@ namespace Calculathore
             operands[0] = result.ToString();
             operands[1] = "0";
             operation = null;
+            OperationButtonsColorReset();
             ScreenUpdate();
         }
 
